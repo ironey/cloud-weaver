@@ -1,0 +1,72 @@
+@startuml cloud-weaver-architecture
+skinparam backgroundColor transparent
+
+cloud "Multi-Cloud" as clouds {
+    cloud "AWS" as aws
+    cloud "Azure" as azure
+    cloud "GCP" as gcp
+}
+
+rectangle "Cloud Weaver" as weaver #LightBlue {
+    rectangle "Control Plane" as control #Orange {
+        rectangle "Service Mesh" as mesh
+        rectangle "Policy Engine" as policy
+        rectangle "Cost Optimizer" as cost
+    }
+
+    rectangle "Data Services" as services #LightGreen {
+        rectangle "Streaming" as stream
+        rectangle "Lake Formation" as lake
+        rectangle "Warehouse Connect" as warehouse
+    }
+
+    rectangle "AI Layer" as ai #Pink {
+        rectangle "AutoML" as automl
+        rectangle "LLM Services" as llm
+        rectangle "Vector Store" as vector
+    }
+
+    rectangle "Security" as security {
+        rectangle "IAM" as iam
+        rectangle "Encryption" as encrypt
+        rectangle "Audit" as audit
+    }
+}
+
+rectangle "Developer Experience" as devx {
+    rectangle "CLI" as cli
+    rectangle "SDK" as sdk
+    rectangle "API" as api
+}
+
+database "Managed Services" as managed {
+    database "Distributed Cache" as cache
+    database "Vector DB" as vectordb
+    database "Time Series" as tsdb
+}
+
+clouds --> weaver : Connect
+weaver --> managed : Operate
+devx --> weaver : Interface
+
+note right of control
+  Intelligent cloud
+  resource management
+end note
+
+note right of services
+  Modern data services
+  with AI capabilities
+end note
+
+note right of ai
+  Advanced AI/ML
+  integration layer
+end note
+
+note right of security
+  Zero-trust security
+  model
+end note
+
+@enduml
